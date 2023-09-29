@@ -66,9 +66,11 @@ app.use(compression());
 app.use(morgan('combined', { stream: accessLogStream }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(
-  multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
-);
+
+// app.use(
+//   multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
+// );
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(
@@ -135,7 +137,7 @@ mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
     app.listen(process.env.PORT || 3000);
-    console.log('Listening on port 3000');
+    console.log('Server started');
   })
   .catch((err) => {
     console.log(err);

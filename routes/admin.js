@@ -22,6 +22,7 @@ router.post(
       .isString()
       .isLength({ min: 3 })
       .trim(),
+    body('imageUrl').isURL(),
     body('price').isFloat(),
     body('description')
       .isLength({ min: 5, max: 400 })
@@ -40,6 +41,7 @@ router.post(
       .isString()
       .isLength({ min: 3 })
       .trim(),
+    body('imageUrl').isURL(),
     body('price').isFloat(),
     body('description')
       .isLength({ min: 5, max: 400 })
@@ -49,6 +51,6 @@ router.post(
   adminController.postEditProduct
 );
 
-router.delete('/product/:productId', isAuth, adminController.deleteProduct);
+router.post('/delete-product', isAuth, adminController.postDeleteProduct);
 
 module.exports = router;
